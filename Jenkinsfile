@@ -1,6 +1,7 @@
 node {
     def app
-    def registryProject='registry.gitlab.com/jhassam/docker-images'
+    def registryProject='registry.gitlab.com/jhassam/docker-images/hellonode'
+    def IMAGE="${registryProject}:version-${env.BUILD_ID}"
 
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
@@ -12,7 +13,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("getintodevops/hellonode")
+        app = docker.build("$IMAGE", '.')
     }
 
     stage('Test image') {
