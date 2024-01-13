@@ -28,7 +28,7 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('git@github.com:jhassam/jenkins-hellonode.git', 'reg1') {
+        docker.withRegistry('git@github.com:jhassam/docker-images/jenkins-hellonode.git', 'reg1') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
